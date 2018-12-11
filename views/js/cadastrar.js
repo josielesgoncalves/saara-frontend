@@ -1,10 +1,11 @@
 jQuery(document).ready(function () {
+
   var urlBase = 'http://localhost:8080'
 
   $('#cursoList').click(function () {
     if(!$('#cursoList').val()) {
-      $ajax({
-		url: urlBase + '/selectBox/getCursos',
+      $.ajax({
+		    url: urlBase + '/selectBox/getCursos',
         type: 'GET',        
         contentType: 'application/json',
         success: function (result) {
@@ -18,12 +19,16 @@ jQuery(document).ready(function () {
         error: function (e) {
           console.log('ERROR:', e)
         }
-      })
+      });
     }
 	
-	
-	
   })
+
+  $("#salvar").click( function()
+           {
+             submitForm();
+           }
+        );
 
   function submitForm() {
     var newUsuarioDTO = {
@@ -50,4 +55,4 @@ jQuery(document).ready(function () {
       }
     })
   }
-})
+});
