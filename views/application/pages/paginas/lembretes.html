@@ -152,7 +152,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">                        
                         <li>
-                            <a href="index.html" id="resumo"><i class="fa fa-dashboard fa-fw"></i> Resumo</a>
+                            <a href="index.html" id="inicio"><i class="fa fa-home fa-fw"></i> Início</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-tasks"></i> Matérias<span class="fa arrow"></span></a>
@@ -164,7 +164,7 @@
                                     <a href="materiasNaoCursadas.html" id="naoCursadas">Não Cursadas</a>
                                 </li>
 								<li>
-                                    <a href="materiasACursadas.html" id="aCursar">A Cursar</a>
+                                    <a href="materiasCursando.html" id="cursando">Cursando</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -185,51 +185,137 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12"></br>
-					<h2>Resumo</h2>                    
+					<h2><i class="fa fa-home fa-fw"></i>Início</h2>                    
                 </div>
-                <!-- /.col-lg-12 -->
+
             </div>
-            <!-- /.row -->
-            <div class="row" id="materiasCard">
-			
-			          
+ 		
+		   <div class="col-lg-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Nova Matéria
+					</div>
+					<div class="panel-body">
+						<form method="post">
+							<div class="form-group">
+								<label for="materia">Matéria</label>
+								<select name="materia" id="materia" placeholder="Materia" class="form-control selectbox">
+									<option value="" selected hidden>Materia...</option>
+								</select>			
+							</div>
+							<div class="form-group">
+								<label for="materia">Status</label>
+								<select name="status" id="status" placeholder="Status" class="form-control selectbox">
+									<option value="" selected hidden>Status...</option>
+								</select>			
+							</div>
+							<div class="form-group">
+								<label for="materia">Tipo da Nota</label>
+								<select name="notaType" id="notaType" placeholder="Tipo da Nota" class="form-control selectbox">
+									<option value="" selected hidden>Tipo da nota...</option>
+								</select>			
+							</div>
+							<div class="form-group">
+								<label for="nota">Nota</label></br>
+								<input name="nota" id="nota" type="number">			
+							</div>
+							<div class="form-group">
+								<label for="peso">Peso</label></br>
+								<input name="peso" id="peso" type="number">			
+							</div>	
+							<button type="submit" class="btn btn-default" id="adicionarMateria">Adicionar Matéria</button>
+						</form>
+					</div>
+				  
+				</div>			
+				
+
 			</div>
-			<div class="col-lg-4">
-				<form method="post">
-					<div class="form-group">
-						<select name="materia" id="materia" placeholder="Materia" class="form-control selectbox">
-							<option value="" selected hidden>Materia...</option>
-						</select>			
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Novo Lembrete
+						</div>
+						<div class="panel-body">
+							<form method="post">								
+								<div class="form-group">
+									<label for="lembreteType">Tipo de Lembrete</label>
+									<select name="lembreteType" id="lembreteType" placeholder="Tipo de Lembrete" class="form-control selectbox">
+										<option value="" selected hidden>Tipo de Lembrete...</option>
+									</select>			
+								</div>								
+								<div class="form-group">
+									<label for="lembreteMateria">Materia</label>
+									<select name="lembreteMateria" id="lembreteMateria" placeholder="Materia" class="form-control selectbox">
+										<option value="" selected hidden>Matéria...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="texto">Data</label></br>
+									<input name="data" id="data" type="text">
+								</div>	
+								<div class="form-group">
+									<label for="assunto">Assunto</label></br>
+									<input name="assunto" id="assunto" type="text">			
+								</div>
+								<div class="form-group">
+									<label for="texto">Texto</label></br>
+									<textarea name="texto" id="texto" type="text"></textarea>
+								</div>									
+								
+								<button type="submit" class="btn btn-default" id="adicionarLembrete">Adicionar Lembrete</button>
+							</form>
+						</div>
+					  
 					</div>
-					<div class="form-group">
-						<select name="status" id="status" placeholder="Status" class="form-control selectbox">
-							<option value="" selected hidden>Status...</option>
-						</select>			
+
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Nova Aula
+						</div>
+						<div class="panel-body">
+							<form method="post">								
+								<div class="form-group">
+									<label for="materiaAula">Matéria</label>
+									<select name="materiaAula" id="materiaAula" placeholder="Matéria" class="form-control selectbox">
+										<option value="" selected hidden>Matéria...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="dia">Dia</label>
+									<select name="dia" id="dia" placeholder="Dia da Semana" class="form-control selectbox">
+										<option value="" selected hidden>Dia da Semana...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="professor">Professor</label></br>
+									<input name="professor" id="professor" type="text">			
+								</div>
+								<div class="form-group">
+									<label for="local">Local</label></br>
+									<input name="local" id="local" type="text">			
+								</div>
+								<div class="form-group">
+									<label for="horario">Horário</label></br>
+									<input name="horario" id="horario" type="text">			
+								</div>
+								<button type="submit" class="btn btn-default" id="adicionarAula">Adicionar Aula</button>
+							</form>
+						</div>
+					  
 					</div>
-					<div class="form-group">
-						<select name="notaType" id="notaType" placeholder="Tipo da Nota" class="form-control selectbox">
-							<option value="" selected hidden>Tipo da nota...</option>
-						</select>			
-					</div>
-					<div class="form-group">
-						<label for="nota">Nota</label>
-						<input name="nota" id="nota" type="number">			
-					</div>
-					<div class="form-group">
-						<label for="peso">Peso</label>
-						<input name="peso" id="peso" type="number">			
-					</div>	
-					<button type="submit" class="btn btn-default" id="adicionarMateria">Adicionar Matéria</button>
-				</form>
-			</div>
-			
+
+				</div>
 			
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
-        <!-- jQuery -->
+    <!-- jQuery -->
     <script src="../../vendor/jquery/jquery.min.js"></script>
 	
 	<script src="../../js/sb-admin-2.js"></script>
