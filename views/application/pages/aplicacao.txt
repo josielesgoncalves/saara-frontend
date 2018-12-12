@@ -1,0 +1,26 @@
+Resumo: 
+	> mostrar cards com matérias que estão sendo cursadas
+	> 3 lembretes próximos com link para ver mais lembretes
+	> barra de progresso de nota com média de cada matéria
+	> barra de progresso de curso
+	> botão para adicionar lembrete
+
+Lembrete:
+	> abrir janela para adicionar dados
+	> lembretes serão selecionáveis e abrirão popup com detalhes
+	> possível editar
+	
+Matérias:
+	> botão para editar matéria
+	> lista de matérias 
+		> ao clicar na matéria, listar todas as aulas e status do lado do nome
+			> botão para adicionar aula
+				> aulas selecináveis para edição
+			> botão para adicionar lembrete
+		> se tiver lembrete relacionado, incluir
+		
+	
+Lembretes:
+	listar todos os lembretes
+	
+Perfil

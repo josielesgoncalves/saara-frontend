@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SAARA</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/font-awesome/css/all.css">
+	<link rel="stylesheet" href="assets/css/form-elements.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+	<!-- Top menu -->
+	<div class="nav-menu os-animation" data-os-animation="fadeInDown" data-os-animation-delay="0s">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navbar navbar-dark navbar-expand-lg">
+						<a class="navbar-brand" href="index.html"><img src="assets/img/logo.png"></a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Top content -->
+	<div class="top-content">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-sm-8 col-sm-offset-2 text">
+					<h1>Cadastre-se como <strong>Estudante</strong></h1>
+					<div class="description">
+						<p>
+							A melhor forma de administrar a sua vida acadêmica!
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+					<form role="form" action="" method="post" class="f1">
+
+						<h3>Registre-se no nosso aplicativo</h3>
+						<p>Preencha o formulário para obter acesso instantâneo</p>
+						<div class="f1-steps">
+							<div class="f1-progress">
+								<div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+							</div>
+							<div class="f1-step active">
+								<div class="f1-step-icon"><i class="fa fa-address-card"></i></div>
+								<p>curso</p>
+							</div>
+							<div class="f1-step">
+								<div class="f1-step-icon"><i class="fa fa-user"></i></div>
+								<p>usuário</p>
+							</div>							
+						</div>
+
+						<fieldset>
+							<h4>Informe seu curso:</h4>
+							<div class="form-group">
+								<label class="sr-only" for="curso">Curso</label>
+								<select name="curso" id="curso" placeholder="Curso" class="form-control selectbox">
+									<option value="" selected hidden>Curso...</option>
+								</select>
+							</div>
+							<div class="f1-buttons">
+								<button type="button" class="btn btn-next">Próximo</button>
+							</div>							
+						</fieldset>					
+						
+						<fieldset>
+							<h4>Diga-nos quem é você:</h4>
+							<div class="form-group">
+								<label class="sr-only" for="name">Nome Completo</label>
+								<input type="text" name="name" placeholder="Nome Completo..." class="form-control" id="name">
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="email">Email</label>
+								<input type="text" name="email" placeholder="Email..." class="email form-control" id="email">
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="password">Senha</label>
+								<input type="password" name="password" placeholder="Senha..." class="form-control" id="password">
+							</div>
+							<div class="form-group">
+								<label class="sr-only" for="confirm_password">Confirme sua senha</label>
+								<input type="password" name="confirm_password" placeholder="Confirme sua senha..." 
+								class="form-control" id="confirm_password">
+							</div>
+							<div class="f1-buttons">
+								<button type="button" class="btn btn-previous">Anterior</button>
+								<button type="submit" id="salvar" class="btn btn-submit">Registrar</button>
+							</div>
+							
+						</fieldset>
+
+					</form>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Javascript -->
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+	<script src="assets/js/jquery.backstretch.min.js"></script>
+	<script src="assets/js/retina-1.1.0.min.js"></script>
+	<script src="assets/js/cadastro-script.js"></script>
+
+</body>
+
+</html>
