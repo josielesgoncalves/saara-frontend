@@ -2,150 +2,175 @@ jQuery(document).ready(function() {
 	
     var urlBase = "http://localhost:8080"
 
-    $("#materia").click(function(){
-        if(!$("#materia").val()){
-			var cursoId = "1";
-            $.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#materia").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            });           
-        }
-    })
+	//$("#tituloMateriasCurso").html("Materias de ' " +  + "'";
+	var usuarioId = localStorage.getItem("idUsuario");
+	var cursoId = localStorage.getItem("cursoUsuario");
+	if(!$("#materia").val()){
+		
+		$.ajax({
+			type : 'GET',
+			url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
+			contentType: "application/json",
+			success :  function(result)
+			{
+				var htmlCode
+				console.log(result);
+				for(var i=0; i<result.length; i++){
+					htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+				}
+				$("#materia").append(htmlCode);
+
+				exibirMaterias(result) 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			}
+		});           
+	}
+
+	function exibirMaterias(materias)
+	{
+		var cores = [
+			"primary",
+			"green",
+			"yellow",
+			"red"
+		];
+		if(materias != null)
+			materias.forEach(function(materia){
+				
+				var cor = cores[Math.floor(Math.random() * 4)];
+				
+				var html = '<div style="width:300px;margin-right: auto">' +
+				'<div class="panel panel-' + cor + '">' +
+					'<div class="panel-heading">' +
+						'<div class="row">' +
+							'<div class="col-xs-3">' +
+								'<i class="fa fa-book fa-5x"></i>' +
+							'</div>' +
+							'<div class="col-xs-9 text-right">' +
+								'<div class="huge"></div>' +
+								'<div>' + materia.descricao + '</div>' +
+							'</div>' +
+						'</div>' +
+					'</div>' +
+					
+				'</div>' +
+			'</div>';
+				$("#rowMaterias").append(html);
+			});
+	}
 	
-	$("#status").click(function(){
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getStatusMateria',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#status").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
 	
-	$("#notaType").click(function(){
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getNotaType',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#notaType").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
 	
-	$("#lembreteType").click(function(){
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getLembreteType',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#lembreteType").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getStatusMateria',
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#status").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
 	
-	$("#materiaAula").click(function(){
-		var cursoId = "1";
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#materiaAula").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getNotaType',
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#notaType").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
 	
-	$("#lembreteMateria").click(function(){
-		var cursoId = "1";
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#lembreteMateria").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getLembreteType',
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#lembreteType").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
 	
-	$("#dia").click(function(){
-			$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getDias',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#dia").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#materiaAula").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
+	
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#lembreteMateria").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
+		
+	$.ajax({
+		type : 'GET',
+		url  : urlBase + '/selectBox/getDias',
+		contentType: "application/json",
+		success :  function(result)
+		{
+			var htmlCode
+			console.log(result);
+			for(var i=0; i<result.length; i++){
+				htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+			}
+			$("#dia").append(htmlCode); 
+		},
+		error : function(e) {
+			console.log("ERROR: ", e);
+		}
+	}); 
+	
 	
 	
 	$("#adicionarMateria").click(function(){ 
@@ -154,14 +179,13 @@ jQuery(document).ready(function() {
 	);
 
     function addMateria(){
-		var usuarioId = "1";
         var dto = {
-            materiaId: $("#materia").val(),
+            materiaDTO: { "materiaId" : $("#materia").val()},
             nota: $("#nota").val(),
 			peso: $("#peso").val(),
             statusId: $("#status").val(),	
 			notaType: $("#notaType").val(),				
-			usuarioId: usuarioId
+			usuarioDTO: { "usuarioId" : usuarioId }
         }
 
         $.ajax({
@@ -171,7 +195,7 @@ jQuery(document).ready(function() {
             contentType: "application/json",
             success :  function(result){
                 console.log(result);
-                window.location.reload();
+                //window.location.reload();
                 return true;
             },
             error : function(e) {
@@ -188,7 +212,6 @@ jQuery(document).ready(function() {
 	);
 
     function addAula(){
-		var usuarioId = "1";
         var dto = {
             materiaId: $("#materiaAula").val(),
             professor: $("#professor").val(),
@@ -205,7 +228,7 @@ jQuery(document).ready(function() {
             contentType: "application/json",
             success :  function(result){
                 console.log(result);
-                window.location.reload();
+                //window.location.reload();
                 return true;
             },
             error : function(e) {
@@ -222,7 +245,6 @@ jQuery(document).ready(function() {
 
 	
 	function addLembrete(){
-		var usuarioId = "1";
         var dto = {
             materiaId: $("#lembreteMateria").val(),
             tipo: $("#lembreteType").val(),
@@ -239,7 +261,7 @@ jQuery(document).ready(function() {
             contentType: "application/json",
             success :  function(result){
                 console.log(result);
-                window.location.reload();
+                //window.location.reload();
                 return true;
             },
             error : function(e) {

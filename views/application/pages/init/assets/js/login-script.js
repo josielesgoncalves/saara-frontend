@@ -123,46 +123,40 @@ jQuery(document).ready(function() {
     
     // submit
     $('.f1').on('submit', function(e) {
-    	
+		var passou = true;
     	// fields validation
     	$(this).find('input[type="text"], input[type="password"]').each(function() {
-    		if( $(this).val() == "" ) {
-    			e.preventDefault();
-    			$(this).addClass('input-error');
-    		}
-    		else {
-    			$(this).removeClass('input-error');
-    		}
+    		if( $(this).val() == "" ) 
+			{
+				passou = false;
+				$(this).addClass('input-error');
+				e.preventDefault();
+			}else{
+				$(this).removeClass('input-error');
+			}
     	});
     	
-
         $(this).find('input[id="confirm_password"]').each(function() {
-            if( $(this).val() != $("#password").val() ) {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            }
-            else {
-                $(this).removeClass('input-error');
-            }
+            if( $(this).val() != $("#password").val() )
+			{
+				passou = false;
+				$(this).addClass('input-error');
+				e.preventDefault();
+			}else{
+				$(this).removeClass('input-error');
+			}
         });
 
-        // fields validation
-        
-        
-        if(!submitForm()){
-            e.preventDefault();
+		if(passou && !submitForm())
+		{
+			e.preventDefault();
         }
-
     });
 
     // requisicoes
 
     var urlBase = "http://localhost:8080"
 
-	$("#entrar").click(function(){ 
-		submitForm();
-		}
-	);
 	
     function submitForm(){
         
@@ -171,17 +165,26 @@ jQuery(document).ready(function() {
 
         $.ajax({
             type : 'POST',
-            url  : urlBase + '/usuario/login?email=' + email+ '&senha='+ senha,
+            url  : urlBase + '/usuario/login?email=' + email + '&senha='+ senha,
             data : JSON.stringify(),
             contentType: "application/json",
             success :  function(result){
                 console.log(result);
-                window.location.reload();
+				if(result.code != 0)
+				{
+					$("#mensagemErroLogin").html(result.error);
+					return false;
+				}
+				
+				window.location = "../paginas/index.html";
+				localStorage.setItem("idUsuario", result.body.usuarioId);
+				localStorage.setItem("cursoUsuario", result.body.usuarioId);
+				localStorage.setItem("emailUsuario", result.body.usuarioId);
+
                 return true;
             },
             error : function(e) {
                 console.log("ERROR: ", e);
-                
                 return false;
             }
         });

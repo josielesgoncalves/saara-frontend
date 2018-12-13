@@ -1,1 +1,28 @@
-img { max-width: 7%; }
+
+.fullWidth
+{
+	width: 100%
+}
+.painelCriar 
+{
+	height: 475px;
+}
+
+.btnAdicionar
+{
+	
+}
+
+.logoTopo
+{
+margin-right: 10px;
+    height: 20px;
+    float: left;
+}
+
+#rowMaterias
+{
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

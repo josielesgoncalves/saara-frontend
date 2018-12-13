@@ -22,30 +22,18 @@ function bar_progress(progress_line_object, direction) {
 jQuery(document).ready(function() {
 	
     /*
-        Fullscreen background
-        */
-        $.backstretch("assets/img/backgrounds/fundo.jpg");
+	Fullscreen background
+	*/
+	$.backstretch("assets/img/backgrounds/fundo.jpg");
 
     /*
-        Form
-        */
-        $('.f1 fieldset:first').fadeIn('slow');
+	Form
+	*/
+	$('.f1 fieldset:first').fadeIn('slow');
 
-        $('.f1 input[type="text"], .f1 input[type="password"]').on('focus', function() {
-         $(this).removeClass('input-error');
-     });
-
-        $("#phone").bind("keyup blur focus", function(e) {
-            e.preventDefault();
-            var expre = /[^\d]/g;
-            $(this).val($(this).val().replace(expre,''));
-        });
-
-        $("#number").bind("keyup blur focus", function(e) {
-            e.preventDefault();
-            var expre = /[^\d]/g;
-            $(this).val($(this).val().replace(expre,''));
-        });
+	$('.f1 input[type="text"], .f1 input[type="password"]').on('focus', function() {
+		$(this).removeClass('input-error');
+	});
 
     // next step
     $('.f1 .btn-next').on('click', function() {
@@ -124,34 +112,33 @@ jQuery(document).ready(function() {
     
     // submit
     $('.f1').on('submit', function(e) {
-    	
+    	var passou = true;
     	// fields validation
     	$(this).find('input[type="text"], input[type="password"]').each(function() {
-    		if( $(this).val() == "" ) {
-    			e.preventDefault();
-    			$(this).addClass('input-error');
-    		}
-    		else {
-    			$(this).removeClass('input-error');
-    		}
+    		if( $(this).val() == "" ) 
+			{
+				passou = false;
+				$(this).addClass('input-error');
+				e.preventDefault();
+			}else{
+				$(this).removeClass('input-error');
+			}
     	});
     	
-
         $(this).find('input[id="confirm_password"]').each(function() {
-            if( $(this).val() != $("#password").val() ) {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            }
-            else {
-                $(this).removeClass('input-error');
-            }
+            if( $(this).val() != $("#password").val() )
+			{
+				passou = false;
+				$(this).addClass('input-error');
+				e.preventDefault();
+			}else{
+				$(this).removeClass('input-error');
+			}
         });
 
-        // fields validation
-        
-        
-        if(!submitForm()){
-            e.preventDefault();
+		if(passou && !submitForm())
+		{
+			e.preventDefault();
         }
 
     });
@@ -160,75 +147,25 @@ jQuery(document).ready(function() {
 
     var urlBase = "http://localhost:8080"
 
-    $("#curso").click(function(){
-        if(!$("#curso").val()){
-            $.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getCursos',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#curso").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            });
-        }
-    })
-
-    $("#materia").click(function(){
-        if(!$("#materia").val()){
-			var cursoId = $("#curso").val();
-            $.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getMateriasCurso/' + cursoId,
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#materia").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            });           
-        }
-    })
-	
-	$("#status").click(function(){
-        	$.ajax({
-                type : 'GET',
-                url  : urlBase + '/selectBox/getStatusMateria',
-                contentType: "application/json",
-                success :  function(result)
-                {
-                    var htmlCode
-                    console.log(result);
-                    for(var i=0; i<result.length; i++){
-                        htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
-                    }
-                    $("#status").html(htmlCode); 
-                },
-                error : function(e) {
-                    console.log("ERROR: ", e);
-                }
-            }); 
-    })
-	
-	$("#salvar").click(function(){ 
-		submitForm();
-		}
-	);
+	if(!$("#curso").val()){
+		$.ajax({
+			type : 'GET',
+			url  : urlBase + '/selectBox/getCursos',
+			contentType: "application/json",
+			success :  function(result)
+			{
+				var htmlCode
+				console.log(result);
+				for(var i=0; i<result.length; i++){
+					htmlCode += '<option value="'+result[i].id+'">'+result[i].descricao+'</option>'
+				}
+				$("#curso").html(htmlCode); 
+			},
+			error : function(e) {
+				console.log("ERROR: ", e);
+			}
+		});
+	}
 
     function submitForm(){
         var dto = {
@@ -245,7 +182,13 @@ jQuery(document).ready(function() {
             contentType: "application/json",
             success :  function(result){
                 console.log(result);
-                window.location.reload();
+                if(result.code != 0)
+				{
+					$("#mensagemErroCadastro").html(result.error);
+					return false;
+				}
+
+				window.location = "index.html";
                 return true;
             },
             error : function(e) {

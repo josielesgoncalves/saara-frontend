@@ -37,14 +37,14 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0 ">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">	
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
 				<div>
-					<a class="navbar-brand" href="index.html">Saara Web</a>
+					<a class="navbar-brand" href="index.html"><img src="../init/assets/img/logo.png" class="logoTopo"/>Saara Web</a>
 				</div>
                 
             </div>
@@ -139,7 +139,7 @@
                         <li><a href="profile.html"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>                        
                         <li class="divider"></li>
-                        <li><a href="../init/index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a onclick="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -183,53 +183,62 @@
         </nav>
 
         <div id="page-wrapper">
-                <div class="col-lg-12"></br>
-					<h1><img src="../init/assets/img/logo.png"></h1>                    
-                </div>
- 		
-		   <div class="col-lg-4">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						Nova Matéria
-					</div>
-					<div class="panel-body">
-						<form method="post">
-							<div class="form-group">
-								<label for="materia">Matéria</label>
-								<select name="materia" id="materia" placeholder="Materia" class="form-control selectbox">
-									<option value="" selected hidden>Materia...</option>
-								</select>			
-							</div>
-							<div class="form-group">
-								<label for="materia">Status</label>
-								<select name="status" id="status" placeholder="Status" class="form-control selectbox">
-									<option value="" selected hidden>Status...</option>
-								</select>			
-							</div>
-							<div class="form-group">
-								<label for="materia">Tipo da Nota</label>
-								<select name="notaType" id="notaType" placeholder="Tipo da Nota" class="form-control selectbox">
-									<option value="" selected hidden>Tipo da nota...</option>
-								</select>			
-							</div>
-							<div class="form-group">
-								<label for="nota">Nota</label></br>
-								<input name="nota" id="nota" type="number">			
-							</div>
-							<div class="form-group">
-								<label for="peso">Peso</label></br>
-								<input name="peso" id="peso" type="number">			
-							</div>	
-							<button type="submit" class="btn btn-default" id="adicionarMateria">Adicionar Matéria</button>
-						</form>
-					</div>
-				  
-				</div>			
-				
+			
 
-			</div>
+			<div class="row">
+                <div class="col-lg-12">
+                    <h1 id="tituloMateriasCurso" class="page-header">Materias</h1>
+                </div>
+            </div>
+
+			<div id="rowMaterias" class="row">
+                
+            </div>
+
+			<div class="row">
+			   <div class="col-lg-4">
+					<div class="panel panel-default painelCriar">
+						<div class="panel-heading">
+							Nova Matéria
+						</div>
+						<div class="panel-body">
+							<form method="post">
+								<div class="form-group">
+									<label for="materia">Matéria</label>
+									<select name="materia" id="materia" placeholder="Materia" class="form-control selectbox">
+										<option value="" selected hidden>Materia...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="materia">Status</label>
+									<select name="status" id="status" placeholder="Status" class="form-control selectbox">
+										<option value="" selected hidden>Status...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="materia">Tipo da Nota</label>
+									<select name="notaType" id="notaType" placeholder="Tipo da Nota" class="form-control selectbox">
+										<option value="" selected hidden>Tipo da nota...</option>
+									</select>			
+								</div>
+								<div class="form-group">
+									<label for="nota">Nota</label></br>
+									<input name="nota" id="nota" type="number" class="fullWidth">			
+								</div>
+								<div class="form-group">
+									<label for="peso">Peso</label></br>
+									<input name="peso" id="peso" type="number" class="fullWidth">			
+								</div>	
+								<button type="submit" class="btn btn-default col-xs-12 btnAdicionar" id="adicionarMateria">Adicionar Matéria</button>
+							</form>
+						</div>
+					  
+					</div>			
+					
+
+				</div>
 				<div class="col-lg-4">
-					<div class="panel panel-default">
+					<div class="panel panel-default painelCriar">
 						<div class="panel-heading">
 							Novo Lembrete
 						</div>
@@ -249,18 +258,18 @@
 								</div>
 								<div class="form-group">
 									<label for="texto">Data</label></br>
-									<input name="data" id="data" type="date">
+									<input name="data" id="data" type="date" class="fullWidth">
 								</div>	
 								<div class="form-group">
 									<label for="assunto">Assunto</label></br>
-									<input name="assunto" id="assunto" type="text">			
+									<input name="assunto" id="assunto" type="text" class="fullWidth">			
 								</div>
 								<div class="form-group">
 									<label for="texto">Texto</label></br>
-									<textarea name="texto" id="texto" type="text"></textarea>
+									<textarea name="texto" id="texto" type="text" class="fullWidth"></textarea>
 								</div>									
 								
-								<button type="submit" class="btn btn-default" id="adicionarLembrete">Adicionar Lembrete</button>
+								<button type="submit" class="btn btn-default col-xs-12 btnAdicionar" id="adicionarLembrete">Adicionar Lembrete</button>
 							</form>
 						</div>
 					  
@@ -269,7 +278,7 @@
 				</div>
 				
 				<div class="col-lg-4">
-					<div class="panel panel-default">
+					<div class="panel panel-default painelCriar">
 						<div class="panel-heading">
 							Nova Aula
 						</div>
@@ -289,24 +298,24 @@
 								</div>
 								<div class="form-group">
 									<label for="professor">Professor</label></br>
-									<input name="professor" id="professor" type="text">			
+									<input name="professor" id="professor" type="text" class="fullWidth">			
 								</div>
 								<div class="form-group">
 									<label for="local">Local</label></br>
-									<input name="local" id="local" type="text">			
+									<input name="local" id="local" type="text" class="fullWidth">			
 								</div>
 								<div class="form-group">
 									<label for="horario">Horário</label></br>
-									<input name="horario" id="horario" type="time">			
-								</div>
-								<button type="submit" class="btn btn-default" id="adicionarAula">Adicionar Aula</button>
+									<input name="horario" id="horario" type="time" class="fullWidth">			
+								</div>	
+								<button type="submit" class="btn btn-default col-xs-12 btnAdicionar" id="adicionarAula">Adicionar Aula</button>
 							</form>
 						</div>
 					  
 					</div>
 
 				</div>
-			
+			</div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -325,13 +334,10 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../../vendor/raphael/raphael.min.js"></script>
-    <script src="../../vendor/morrisjs/morris.min.js"></script>
-    <script src="../../data/morris-data.js"></script>
-
     <!-- Custom Theme JavaScript -->
     <script src="../../dist/js/sb-admin-2.js"></script>
+	
+	<script src="../../js/geral.js"></script>
 
 </body>
 
